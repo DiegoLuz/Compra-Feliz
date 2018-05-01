@@ -1,18 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { CompraFelizComponent } from './components/compra-feliz/compra-feliz.component';
+import { HeaderModule } from './components/header/header.module';
+import { ListaProdutoModule } from './components/lista-produtos/lista-produto.module';
+import { DetalheProdutoModule } from './components/detalhes-produto/detalhe-produto.module';
+import { ModalModule } from './components/modal/modal.module';
 
-import { AppComponent } from './app.component';
-
+let imports = [BrowserModule, HeaderModule, ListaProdutoModule, DetalheProdutoModule, ModalModule];
 
 @NgModule({
   declarations: [
-    AppComponent
+    CompraFelizComponent
   ],
   imports: [
-    BrowserModule
+    imports
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [CompraFelizComponent],
 })
 export class AppModule { }

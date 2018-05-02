@@ -9,7 +9,13 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatAutocompleteModule,
-  MatOptionModule
+  MatOptionModule,
+  MatExpansionModule,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatListModule,
+  MatProgressSpinnerModule,
+  
 } from '@angular/material';
 
 
@@ -23,7 +29,11 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatOptionModule],
+    MatOptionModule,
+    MatExpansionModule,
+    MatListModule,
+    MatProgressSpinnerModule,
+],
 
   exports: [
     BrowserAnimationsModule,
@@ -34,7 +44,11 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatOptionModule],
+    MatOptionModule,
+    MatExpansionModule,
+    MatListModule,
+    MatProgressSpinnerModule,
+],
 
   declarations: [],
 

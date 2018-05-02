@@ -1,19 +1,20 @@
 <component-modal #modalComprar>
-  <div class="row">
-    <div class="col-md-6">
-      <span>Insira a quantidade desejada!</span>
-    </div>
+  <form [formGroup]="comprarProdutoForm" (ngSubmit)="submitFormModalComprar(comprarProdutoForm.value)">
+    <div class="row">
+      <div class="col-md-6">
+        <span>Insira a quantidade desejada!</span>
+      </div>
 
-    <div class="col-md-3">
-      <input class="form-control" type="number" value="1" min="1" />
-    </div>
-    <div class="col-md-3">
-      <div class="form-group alinha-botao">
-        <button type="submit" class="centraliza-numero" mat-raised-button color="primary">Confirmar</button>
+      <div class="col-md-3">
+        <input class="form-control" type="number" [formControl]="comprarProdutoForm.get('quantidade')"   min="1" />
+      </div>
+      <div class="col-md-3">
+        <div class="form-group alinha-botao">
+          <button type="submit" class="centraliza-numero" mat-raised-button color="primary">Confirmar</button>
+        </div>
       </div>
     </div>
-  </div>
-
+  </form>
 </component-modal>
 
 <div class="container">
@@ -40,7 +41,7 @@
           R$ {{item.valor}}
         </div>
         <div class="botao-comprar">
-          <button mat-raised-button color="primary" (click)="abrirModal()"><i class="material-icons">&#xE8CC;</i> Comprar</button>
+          <button mat-raised-button color="primary" (click)="abrirModal(item)"><i class="material-icons">&#xE8CC;</i> Comprar</button>
         </div>
       </div>
     </div>

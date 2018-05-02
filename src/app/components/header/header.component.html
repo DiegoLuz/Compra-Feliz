@@ -11,10 +11,6 @@
 
         <input type="text" placeholder="Buscar produtos..." (keyup)="alterarValorPesquisa()"  class="form-control" matInput [formControl]="produtoAtual" [matAutocomplete]="auto"/>
 
-        <!--<mat-form-field class="ajustar-tamanho">
-          <input type="text" placeholder="Buscar produtos..." (keyup)="alterarValorPesquisa()"  aria-label="Number" matInput [formControl]="produtoAtual" [matAutocomplete]="auto">
-        </mat-form-field>-->
-
         <mat-autocomplete #auto="matAutocomplete" >
           <mat-option *ngFor="let produto of listaProdutos" [value]="produto.nome" (onSelectionChange)="selecionaProduto(produto)">
             {{ produto.nome }}

@@ -6,8 +6,9 @@ import { HeaderModule } from './components/header/header.module';
 import { ListaProdutoModule } from './components/lista-produtos/lista-produto.module';
 import { DetalheProdutoModule } from './components/detalhes-produto/detalhe-produto.module';
 import { ModalModule } from './components/modal/modal.module';
+import { CheckOutModule } from './components/checkout/checkout.module';
 
-let imports = [BrowserModule, HeaderModule, ListaProdutoModule, DetalheProdutoModule, ModalModule];
+let imports = [BrowserModule, HeaderModule, ListaProdutoModule, DetalheProdutoModule, ModalModule, CheckOutModule];
 
 @NgModule({
   declarations: [

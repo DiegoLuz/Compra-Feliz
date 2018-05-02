@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoModel } from '../shared/produto.model';
+import { CarrinhoModel } from '../shared/carrinho.model';
 
 @Component({
   selector: 'compra-feliz',
@@ -11,6 +12,9 @@ export class CompraFelizComponent implements OnInit {
 
   tela: string = "";
   produtoSelecionado: ProdutoModel = null;
+  itemCarrinho: CarrinhoModel = new CarrinhoModel();
+  listaCarrinho: CarrinhoModel[] = [];
+  quantidadeCarrinho: number = 0;
 
   constructor() {
 
@@ -28,6 +32,20 @@ export class CompraFelizComponent implements OnInit {
   selecionadaProdutoFiltro(produto: ProdutoModel) {
     this.tela = "lista";
     this.produtoSelecionado = produto;
+  }
+
+  comprarProduto(itemCarrinho: CarrinhoModel) {
+    this.tela = "checkout";
+    this.itemCarrinho = itemCarrinho;
+    this.listaCarrinho.push(itemCarrinho);
+  }
+
+  itemRemovidoCarrinho(itemLista: CarrinhoModel) {
+    let lista = this.listaCarrinho;
+
+    this.listaCarrinho.splice(this.listaCarrinho.indexOf(itemLista), 1);
+
+    console.log(lista);
   }
 
 }

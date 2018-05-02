@@ -28,16 +28,19 @@
       <div class="col-md-12 preco">
         R$ {{_produtoSelecionado.valor}}
       </div>
+      <form [formGroup]="comprarProdutoForm" (ngSubmit)="submitFormModalComprar(comprarProdutoForm.value)">
+        <div class="row quantidade">
 
-      <div class="col-md-12 quantidade">
-        <label>Quantidade</label>
-        <input class="form-control tamanho-campo-quantidade" min="1" placeholder="Quantidade" type="number" value="1">
-      </div>
+          <div class="col-md-6">
+            <label>Quantidade</label>
+            <input class="form-control tamanho-campo-quantidade" min="1" [formControl]="comprarProdutoForm.get('quantidade')" placeholder="Quantidade" type="number" value="1">
+          </div>
+          <div class="col-md-6 alinha-btn">
+            <button type="submit" mat-raised-button color="primary"> Comprar agora</button>
+          </div>
 
-      <div class="col-md-12 acoes">
-        <button mat-raised-button color="primary"> Comprar agora</button>
-        <button mat-raised-button color="primary">Adicionar ao carrinho</button>
-      </div>
+        </div>
+      </form>
 
     </div>
   </div>

@@ -1,3 +1,37 @@
+<component-modal #modalConfirmar>
+  <div class="row">
+    <div class="col-md-12">
+      <span>Ao clicar em confirmar você estará comprando os seguintes itens abaixo!</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul>
+        <li *ngFor="let item of listaCarrinho">
+          {{item.produto.nome}} | quantidade ({{item.quantidade}}) |  Valor: R$ {{item.valorTotal}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group alinha-botao">
+        <button type="button" class="centraliza-numero" mat-raised-button color="primary" (click)="fecharModal()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mensagem-final">
+      <span>"I Am One With the Force, and the Force Is With Me"</span>
+    </div>
+  </div>
+
+
+</component-modal>
+
 <div class="container">
   <mat-accordion>
     <mat-expansion-panel [expanded]="true">
@@ -42,7 +76,7 @@
             </div>
 
             <div class="col-md-2 quantidade">
-              <input type="number" value="{{item.quantidade}}" min="1" class="form-control" />
+              <input type="number" value="{{item.quantidade}}" (change)="adicionarMaisItens($event, item)" min="1" class="form-control" />
             </div>
             <div class="col-md-2 valor-unitario">
               <span>R$ {{item.produto.valor}}</span>
@@ -71,7 +105,7 @@
     </div>
     <div class="col-md-12">
       <div class="botao-finalizar-compra">
-        <button mat-raised-button color="primary"> Finalizar Compra</button>
+        <button mat-raised-button color="primary" (click)="abrirModalFinalizar()"> Finalizar Compra</button>
       </div>
 
     </div>

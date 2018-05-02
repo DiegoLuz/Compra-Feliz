@@ -48,5 +48,12 @@ export class CompraFelizComponent implements OnInit {
     console.log(lista);
   }
 
+  voltarTelaOriginal() {
+    this.tela = "lista";
+    this.produtoSelecionado = null;
+    this.itemCarrinho = new CarrinhoModel();
+    this.listaCarrinho = [];
+  }
+
 }
 

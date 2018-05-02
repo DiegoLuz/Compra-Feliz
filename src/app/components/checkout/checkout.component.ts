@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { CarrinhoModel } from '../shared/carrinho.model';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'checkout',
@@ -15,6 +16,8 @@ export class CheckOutComponent {
   valorTotalCompra: number = 0;
   load: boolean = false;
 
+  @ViewChild('modalConfirmar') modalConfirmar: ModalComponent;
+
   @Input() set novoItemCarrinho(item: CarrinhoModel[]) {
     console.log(item);
     this.listaCarrinho = item;
@@ -25,6 +28,8 @@ export class CheckOutComponent {
   }
 
   @Output() itemRemovidoCarrinhoEmit: EventEmitter<CarrinhoModel> = new EventEmitter<CarrinhoModel>();
+
+  @Output() voltarTelaOrigemEmit: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {
 
@@ -38,6 +43,29 @@ export class CheckOutComponent {
     this.listaCarrinho.splice(index, 1);
 
     setInterval(() => { this.load = false }, 1000);
+  }
+
+  adicionarMaisItens(event, item: CarrinhoModel) {
+
+    let itemAtual = this.listaCarrinho[this.listaCarrinho.indexOf(item)];
+    let valorToTalAtual = this.valorTotalCompra - itemAtual.valorTotal;
+
+    itemAtual.quantidade = event.target.value;
+    itemAtual.valorTotal = itemAtual.quantidade * itemAtual.produto.valor;
+
+    this.valorTotalCompra = valorToTalAtual + itemAtual.valorTotal;
+
+    this.listaCarrinho[this.listaCarrinho.indexOf(item)] = itemAtual;
+
+  }
+
+  abrirModalFinalizar() {
+    this.modalConfirmar.abrirModal("Finalizar Compra", "", true);
+  }
+
+  fecharModal() {
+    this.modalConfirmar.fecharModal();
+    this.voltarTelaOrigemEmit.emit();
   }
 
 }

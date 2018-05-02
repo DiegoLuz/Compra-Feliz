@@ -38,8 +38,9 @@ export class HeaderComponent implements OnInit {
       let produto: ProdutoModel = null;
       this.selecionadaProdutoFiltroEvent.emit(produto);
     }
-
-    this.filtrar(this.produtoAtual.value);
+    else {
+      this.filtrar(this.produtoAtual.value);
+    }
 
   }
 

@@ -73,3 +73,13 @@
   top: 0;
   left: 45%;
 }
+.alinha-botao {
+  float: right;
+}
+
+.mensagem-final {
+  font-size: 10px;
+  text-align: center;
+  margin-bottom: 5px;
+  color: #f38a33;
+}

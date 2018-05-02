@@ -24,13 +24,13 @@ export class ListaProdutoComponent implements OnInit {
   @Output() comprarProdutoEvent: EventEmitter<CarrinhoModel> = new EventEmitter<CarrinhoModel>();
   @Output() exibeDetalhesEvent: EventEmitter<ProdutoModel> = new EventEmitter<ProdutoModel>();
   @Input() set produtoSelecionado(produto: ProdutoModel) {
-
+    this.listaProduto = [];
 
     if (produto == null) {
       this.buscarListaProdutos();
     }
     else {
-      this.listaProduto = [];
+
       this.listaProduto.push(produto);
     }
 

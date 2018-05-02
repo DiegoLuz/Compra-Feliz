@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { ProdutoModel } from '../shared/produto.model';
 import { DescricaoProdutoModel } from '../shared/descricao-produto.model';
-
 import { CompraFelizService } from '../shared/compra-feliz.service';
+import { CarrinhoModel } from '../shared/carrinho.model';
 
 @Component({
   selector: 'detalhes-produto',
@@ -18,14 +19,25 @@ export class DetalhesProdutoComponent {
   _produtoSelecionado: ProdutoModel = new ProdutoModel()
   descricaoProduto: DescricaoProdutoModel = new DescricaoProdutoModel();
   slideIndex: number = 0;
+  comprarProdutoForm: FormGroup;
+  itemCarrinho: CarrinhoModel = new CarrinhoModel();
+  
+  @Output() comprarProdutoEvent: EventEmitter<CarrinhoModel> = new EventEmitter<CarrinhoModel>();
 
   @Input() set produtoSelecionado(valor: ProdutoModel) {
     this.buscarDetalheProduto(valor.id);
     this._produtoSelecionado = valor;
   }
 
-  constructor(private compraFelizService: CompraFelizService) {
+  constructor(private fb: FormBuilder, private compraFelizService: CompraFelizService) {
+    this.criarFormularioAdicionarProduto();
+  }
 
+
+  criarFormularioAdicionarProduto() {
+    this.comprarProdutoForm = this.fb.group({
+      'quantidade': 1
+    });
   }
 
   buscarDetalheProduto(idProduto: number) {
@@ -49,6 +61,13 @@ export class DetalhesProdutoComponent {
     var mod: number = a - ((Math.floor(a / b)) * b);
 
     return mod;
+  }
+
+  submitFormModalComprar(form) {
+    this.itemCarrinho.produto = this._produtoSelecionado;
+    this.itemCarrinho.quantidade = form.quantidade;
+    this.itemCarrinho.valorTotal = (form.quantidade * this.itemCarrinho.produto.valor);
+    this.comprarProdutoEvent.emit(this.itemCarrinho);
   }
 }
 
